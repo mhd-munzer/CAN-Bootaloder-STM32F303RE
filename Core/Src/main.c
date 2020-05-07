@@ -142,12 +142,7 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	bootloader_uart_read_data();
-	//HAL_CAN_Start(&hcan);
-	//HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
-	//HAL_CAN_AddTxMessage(&hcan, &pTxHeader, Txbuffer, &TxMailBox);
-	//HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-	//HAL_Delay(1000);
-	//Txbuffer[7] = Txbuffer[7] + 1;
+
   }
   /* USER CODE END 3 */
 }
@@ -162,7 +157,7 @@ void SystemClock_Config(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
@@ -175,7 +170,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB busses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
@@ -409,28 +404,17 @@ void handle_start_download(uint8_t *buffer, uint8_t rx_len){
 
 }
 void handle_Get_Version(uint8_t *buffer, uint8_t rx_len){
-	//uint8_t len = rx_len;
-	//uint32_t host_crc = *((uint32_t *)(buffer + len - 4));
-//	if (! bootloader_verify_crc(buffer, len - 4, host_crc, rx_len)){
-//		  bootloader_send_ack(buffer[1], 5);
+
 	pTxHeader.ExtId = can_generate_header(0xFE,0x16,0x10,0x03);
 	pTxHeader.IDE = CAN_ID_EXT;
-	//memcpy(Txbuffer,&msg,sizeof(msg));
+
 	pTxHeader.DLC= sizeof(Txbuffer);
     HAL_CAN_AddTxMessage(&hcan, &pTxHeader, Txbuffer, &TxMailBox);
-	//uint8_t ack = 12;
-	//HAL_UART_Transmit(&huart2, &ack, sizeof(ack), 0x02);
-
-//	  }
-//	  else {
-//		  bootloader_send_nack();
-//	  }
-
 
 }
 void handle_writing(uint8_t * buffer, uint8_t rx_len){
   uint8_t len = rx_len;
-  //uint8_t payload_len = buffer[2];
+
   uint32_t total_length = len ;
 
   uint32_t host_crc = *((uint32_t *) (buffer + total_length - 4));
@@ -445,22 +429,12 @@ void handle_writing(uint8_t * buffer, uint8_t rx_len){
   }
 
 void handle_exit_bootloader(uint8_t *buffer, uint8_t rx_len){
-	//uint8_t len = rx_len;
-	//uint32_t host_crc = *((uint32_t *)(buffer + len - 4));
-//	if (! bootloader_verify_crc(buffer, len - 4, host_crc, rx_len)){
-//		  bootloader_send_ack(buffer[1], 5);
+
 	pTxHeader.ExtId = can_generate_header(0xFE,0x16,0x10,0x06);
 	pTxHeader.IDE = CAN_ID_EXT;
-	//memcpy(Txbuffer,&msg,sizeof(msg));
+
 	pTxHeader.DLC= sizeof(Txbuffer);
     HAL_CAN_AddTxMessage(&hcan, &pTxHeader, Txbuffer, &TxMailBox);
-	//uint8_t ack = 12;
-	//HAL_UART_Transmit(&huart2, &ack, sizeof(ack), 0x02);
-
-//	  }
-//	  else {
-//		  bootloader_send_nack();
-//	  }
 
 
 }
@@ -490,10 +464,7 @@ uint8_t bootloader_verify_crc (uint8_t *pData, uint32_t len, uint32_t crc_host, 
 
   for (uint32_t i=0 ; i < len ; i++)
 {
-	  //uint32_t i_data = pData[i];
 	  CRC->DR = pData[i];
-	  //uwCRCValue = HAL_CRC_Accumulate(&hcrc, &i_data, 1);
-
 }
   uwCRCValue = CRC->DR;
  /* Reset CRC Calculation Unit */
@@ -590,7 +561,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
