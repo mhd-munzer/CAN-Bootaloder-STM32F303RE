@@ -1,0 +1,10 @@
+ymodem.c:66:26:CAN_Receive_data	48	static
+ymodem.c:126:26:CAN_Send_data	32	static
+ymodem.c:169:26:ReceivePacket	48	static
+ymodem.c:259:13:PrepareIntialPacket	48	static
+ymodem.c:300:13:PreparePacket	40	static
+ymodem.c:340:10:UpdateCRC16	24	static
+ymodem.c:366:10:Cal_CRC16	24	static
+ymodem.c:386:9:CalcChecksum	24	static
+ymodem.c:405:19:Ymodem_Receive	80	static
+ymodem.c:557:19:Ymodem_Transmit	72	static

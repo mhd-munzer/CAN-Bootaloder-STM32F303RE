@@ -1,0 +1,11 @@
+flash_if.c:74:6:FLASH_If_Init	8	static
+flash_if.c:91:10:FLASH_If_Erase	40	static
+flash_if.c:133:10:FLASH_If_Write	40	static
+flash_if.c:179:10:FLASHWriteConfiguration	32	static
+flash_if.c:219:6:FlashReadConfigurationData	4	static
+flash_if.c:229:10:FLASH_If_GetWriteProtectionStatus	40	static
+flash_if.c:265:10:FLASH_If_WriteProtectionConfig	72	static
+flash_if.c:308:10:FlashReadFirmwareVersion	8	static
+flash_if.c:313:9:FlashGetBootLoaderFlag	8	static
+flash_if.c:317:9:FlashGetCANAddress	8	static
+flash_if.c:321:6:FlashWriteCANAdddress	16	static
